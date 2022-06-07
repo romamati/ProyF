@@ -46,7 +46,6 @@ class calzados(models.Model):
     talle = models.CharField(max_length=40)
     color = models.CharField(max_length=40)
     cod_categoria = models.IntegerField()
-    cod_categoria = models.IntegerField()
     imagen = models.ImageField(upload_to="calzado",null=True)
 
     class Meta:
@@ -58,7 +57,6 @@ class accesorios(models.Model):
     nombre = models.CharField(max_length=40)
     precio = models.FloatField()
     color = models.CharField(max_length=40)
-    cod_categoria = models.IntegerField()
     cod_categoria = models.IntegerField()
     imagen = models.ImageField(upload_to="accesorio",null=True)
 
