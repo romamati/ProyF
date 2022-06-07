@@ -1,5 +1,5 @@
 from django import forms
-from products.models import indumentarias,calzados,accesorios
+from Nike.models import indumentarias,calzados,accesorios
 
 # class Product_form(forms.Form):
 #     name = forms.CharField(max_length=40)
