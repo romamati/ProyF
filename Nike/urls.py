@@ -1,12 +1,13 @@
 from django.urls import path
 
-from Nike.views import products, create_product_view, search_product_view,crear_productos_calzados,buscar_productos_calzados,crear_productos_accesorios,buscar_productos_accesorios
+from Nike.views import products, create_product_view, search_product_view,crear_productos_calzados,buscar_productos_calzados,crear_productos_accesorios,buscar_productos_accesorios,calzado_view 
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns =[
     path('', products, name = 'products'),
+    path('calzado_view/', calzado_view, name = 'calzado_view'),
     path('create-product/', create_product_view, name = 'create-product'),
     path('search-product/', search_product_view, name = 'search_product_view'),
     path('crear-productos-calzados/', crear_productos_calzados, name = 'crear-productos-calzados'),

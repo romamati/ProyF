@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    Productos
+    Calzados
 {% endblock %}
 
 {% block contenido %}
 
 <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
-    {% for product in productos %}
+    {% for c in calzado %}
 
     <div class="card" style="width: 18rem;" >
-        <img class="card-img-top" src="{{product.imagen.url}}" alt="Card image cap">
+        <img class="card-img-top" src="{{c.imagen.url}}" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">Descripción: {{product.nombre}} {{product.color}}</h5>
-            <p class="card-text">Precio: ${{product.precio}}</p>
-            <p class="card-text">Talle: {{product.talle}}</p>
+            <h5 class="card-title">Descripción: {{c.nombre}} {{c.color}}</h5>
+            <p class="card-text">Precio: ${{c.precio}}</p>
+            <p class="card-text">Talle: {{c.talle}}</p>
             <a href="#" class="btn btn-primary">Comprar!</a>
         </div>
     </div>

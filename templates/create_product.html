@@ -21,6 +21,7 @@ Productos
     </table>
     <input type="submit" , value="Enviar!">
 </form>
+
 {% elif new_product %}
 
 <div class="card" style="width: 18rem;">
@@ -29,6 +30,27 @@ Productos
         <h5 class="card-title">{{new_product.nombre}}</h5>
         <p class="card-text">{{new_product.talle}}</p>
         <p class="card-text">{{new_product.precio}}</p>
+    </div>
+</div>
+
+{% elif nuevo_calzado %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{nuevo_calzado.imagen.url}}" alt="Nike">
+    <div class="card-body">
+        <h5 class="card-title">{{nuevo_calzado.nombre}}</h5>
+        <p class="card-text">{{nuevo_calzado.talle}}</p>
+        <p class="card-text">{{nuevo_calzado.precio}}</p>
+    </div>
+</div>
+
+{% elif nuevo_accesorio %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{nuevo_accesorio.imagen.url}}" alt="Nike">
+    <div class="card-body">
+        <h5 class="card-title">{{nuevo_accesorio.nombre}}</h5>
+        <p class="card-text">{{nuevo_accesorio.precio}}</p>
     </div>
 </div>
 

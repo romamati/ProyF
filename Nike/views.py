@@ -44,6 +44,12 @@ def search_product_view(request):
     return render(request, 'search_product.html', context = context)
 
 
+def calzado_view(request):
+    print(request.method)
+    calzado = calzados.objects.all()
+    context = {'calzado':calzado}
+    return render(request, 'calzado.html', context=context)
+
 def crear_productos_calzados(request):
     if request.method == 'GET':
         form = Calzados_form()
@@ -79,7 +85,7 @@ def crear_productos_accesorios(request):
         context = {'form':form}
         return render(request, 'create_product.html', context=context)
     else:
-        form1 = Accesorios_form(request.POST,files=request.FILES)
+        form = Accesorios_form(request.POST,files=request.FILES)
         if form.is_valid():
             nuevo_accesorio = accesorios.objects.create(
                 codigo_barra = form.cleaned_data['codigo_barra'],
