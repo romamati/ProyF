@@ -37,14 +37,14 @@ def crear_productos_indumentarias(request):
 #    productos = indumentarias.objects.filter(name__contains = request.GET['search'])
 #    context = {'productos':productos}
 #    return render(request, 'search_product.html', context = context)
-
+#name__icontains
 def buscar_productos_indumentarias(request):
-    productos = indumentarias.objects.filter(name__icontains=request.GET['search'])
+    productos = indumentarias.objects.filter(nombre__contains=request.GET['search'])
     if productos.exists():
         context = {'productos':productos}
     else:
         context = {'errors':'No se encontro el producto'}
-    return render(request, 'search_products.html', context = context)
+    return render(request, 'search_product.html', context = context)
 
 def Remeras(request):
     print(request.method)
