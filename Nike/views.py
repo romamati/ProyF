@@ -32,11 +32,19 @@ def crear_productos_indumentarias(request):
             context ={'nuevo_indumentaria':nuevo_indumentaria}
         return render(request, 'create_product.html', context=context)
 
+#def buscar_productos_indumentarias(request):
+#    print(request.GET)
+#    productos = indumentarias.objects.filter(name__contains = request.GET['search'])
+#    context = {'productos':productos}
+#    return render(request, 'search_product.html', context = context)
+
 def buscar_productos_indumentarias(request):
-    print(request.GET)
-    products = indumentarias.objects.filter(name__contains = request.GET['search'])
-    context = {'products':products}
-    return render(request, 'search_product.html', context = context)
+    productos = indumentarias.objects.filter(name__icontains=request.GET['search'])
+    if productos.exists():
+        context = {'productos':productos}
+    else:
+        context = {'errors':'No se encontro el producto'}
+    return render(request, 'search_products.html', context = context)
 
 def Remeras(request):
     print(request.method)
@@ -61,6 +69,7 @@ def Buzos(request):
     productos = indumentarias.objects.filter(cod_categoria = 4)
     context = {'productos':productos}
     return render(request, 'indumentaria.html', context=context)
+
 #--------------------------------------Parte de Calzados--------------------------------------------------------------
 def calzado_view(request):
     print(request.method)
