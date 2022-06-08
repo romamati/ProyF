@@ -22,14 +22,14 @@ Productos
     <input type="submit" , value="Enviar!">
 </form>
 
-{% elif new_product %}
+{% elif nuevo_indumentaria %}
 
 <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="{{new_product.imagen.url}}" alt="Nike">
+    <img class="card-img-top" src="{{nuevo_indumentaria.imagen.url}}" alt="Nike">
     <div class="card-body">
-        <h5 class="card-title">{{new_product.nombre}}</h5>
-        <p class="card-text">{{new_product.talle}}</p>
-        <p class="card-text">{{new_product.precio}}</p>
+        <h5 class="card-title">{{nuevo_indumentaria.nombre}}</h5>
+        <p class="card-text">{{nuevo_indumentaria.talle}}</p>
+        <p class="card-text">{{nuevo_indumentaria.precio}}</p>
     </div>
 </div>
 
