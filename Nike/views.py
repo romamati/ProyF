@@ -4,6 +4,10 @@ from django.http import HttpResponse
 from Nike.models import indumentarias,calzados,accesorios
 from Nike.forms import Indumentarias_form, Calzados_form, Accesorios_form
 
+
+
+
+
 #--------------------------------------Parte de Indumentarias--------------------------------------------------------------
 def indumentaria_view(request):
     print(request.method)
@@ -25,26 +29,11 @@ def crear_productos_indumentarias(request):
                 precio = form.cleaned_data['precio'],
                 talle = form.cleaned_data['talle'],
                 color = form.cleaned_data['color'],
-                cod_estacion = form.cleaned_data['cod_estacion'],
                 cod_categoria = form.cleaned_data['cod_categoria'],
                 imagen = form.cleaned_data['imagen'],
             )
             context ={'nuevo_indumentaria':nuevo_indumentaria}
         return render(request, 'create_product.html', context=context)
-
-#def buscar_productos_indumentarias(request):
-#    print(request.GET)
-#    productos = indumentarias.objects.filter(name__contains = request.GET['search'])
-#    context = {'productos':productos}
-#    return render(request, 'search_product.html', context = context)
-#name__icontains
-def buscar_productos_indumentarias(request):
-    productos = indumentarias.objects.filter(nombre__contains=request.GET['search'])
-    if productos.exists():
-        context = {'productos':productos}
-    else:
-        context = {'errors':'No se encontro el producto'}
-    return render(request, 'search_product.html', context = context)
 
 def Remeras(request):
     print(request.method)
@@ -97,12 +86,6 @@ def crear_productos_calzados(request):
             context ={'nuevo_calzado':nuevo_calzado}
         return render(request, 'create_product.html', context=context)
 
-def buscar_productos_calzados(request):
-    print(request.GET)
-    calzado = calzados.objects.filter(name__contains = request.GET['search'])
-    context = {'calzado':calzado}
-    return render(request, 'search_product.html', context = context)
-
 def ZapatillaDeportiva(request):
     print(request.method)
     productos = calzados.objects.filter(cod_categoria = 1)
@@ -126,6 +109,7 @@ def Ojotas(request):
     productos = calzados.objects.filter(cod_categoria = 4)
     context = {'productos':productos}
     return render(request, 'calzado.html', context=context)
+
 #--------------------------------------Parte de Accesorios--------------------------------------------------------------
 def accesorio_view(request):
     print(request.method)
@@ -151,12 +135,6 @@ def crear_productos_accesorios(request):
             )
             context ={'nuevo_accesorio':nuevo_accesorio}
         return render(request, 'create_product.html', context=context)
-
-def buscar_productos_accesorios(request):
-    print(request.GET)
-    accesorio = accesorios.objects.filter(name__contains = request.GET['search'])
-    context = {'accesorio':accesorio}
-    return render(request, 'search_product.html', context = context)
 
 def Pelota(request):
     print(request.method)
@@ -200,3 +178,20 @@ def Llaveros(request):
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
+#------------------------------BUSQUEDA GENERAL--------------------------------
+def buscar_productos_indumentarias(request):
+    productos = []
+    producto_search = indumentarias.objects.filter(nombre__contains=request.GET["search"])
+    calzado_search = calzados.objects.filter(nombre__contains=request.GET["search"])
+    accesorio_search = accesorios.objects.filter(nombre__contains=request.GET["search"])
+    for x in producto_search:
+        productos.append(x)
+    for x in calzado_search:
+        productos.append(x)
+    for x in accesorio_search:
+        productos.append(x)
+    if productos:
+        context = {"productos": productos}
+    else:
+        context = {"errors": "No se encontro el producto"}
+    return render(request, "search_product.html", context=context)

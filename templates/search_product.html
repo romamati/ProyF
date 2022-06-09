@@ -5,21 +5,29 @@
 {% endblock %}
 
 {% block contenido %}
-<h1>Aca va el contenido de buscar productos</h1>
-<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
-    {% for product in productos %}
-
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{product.imagen.url}}" alt="Nike">
-            <div class="card-body">
-                <h5 class="card-title">Descripción: {{product.nombre}} {{product.color}}</h5>
-                <p class="card-text">{{product.talle}}</p>
-                <p class="card-text">{{product.precio}}</p>
-                <a href="#" class="btn btn-primary">Comprar!</a>
-            </div>
-        </div>
-
-    {% endfor %}
-</div>
-
+{% if errors %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1 class= 'text-center' style="color:#ffffff">NO SE ENCONTRO EL PRODUCTO BUSCADO!</h1>
+{% elif productos %}
+    <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+        {% for product in productos %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{product.imagen.url}}" alt="Nike">
+                    <div class="card-body">
+                        <h5 class="card-title">Descripción: {{product.nombre}} {{product.color}}</h5>
+                        <p class="card-text">{{product.talle}}</p>
+                        <p class="card-text">{{product.precio}}</p>
+                        <a href="#" class="btn btn-primary">Comprar!</a>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
