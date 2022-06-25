@@ -12,23 +12,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 </head>
-
-<body style="background-color:#2b0404;">
-    <nav class="navbar navbar-expand-lg navbar " style="background: rgb(129, 36, 36);">
-        <a class="navbar-brand" href="/" style="color:#ffffff";>INICIO</span></a>
+    <br>
+<body style="background: url('/media/b.jpg') no-repeat; background-size:cover; ">
+    <nav class="navbar navbar-expand-lg navbar " style="background: rgb(94, 91, 91);">
+        <a class="navbar-brand" href="/" style="color:#ffffff";>
+            <img src="/media/nike.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-family: Bickham script pro;">
             <ul class="navbar-nav mr-auto">
+                <!--<li class="nav-item active">
+                    <a class="nav-link" href="/contact/">Contacto </a>
+                </li>-->
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-expanded="false" style="color:#ffffff">
                         Indumentarias
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width: 5rem">
                         <a class="dropdown-item" href="/Nike/Remeras">Remeras</a>
                         <a class="dropdown-item" href="/Nike/Pantalones">Pantalones</a>
                         <a class="dropdown-item" href="/Nike/Camperas">Camperas</a>
@@ -41,7 +47,7 @@
                         aria-expanded="false" style="color:#faf8f8";>
                         Calzados
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
                         <a class="dropdown-item" href="/Nike/ZapatillaDeportiva/">Zapatillas Deportivas</a>
                         <a class="dropdown-item" href="/Nike/ZapatillaComunes">Zapatillas Comunes</a>
                         <a class="dropdown-item" href="/Nike/Botines">Botines</a>
@@ -70,16 +76,29 @@
                         aria-expanded="false" style="color:#ffffff";>
                         Ingresar Productos
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width: 5rem">
                         <a class="dropdown-item" href="/Nike/ADDIndumentarias/">Indumentarias</a>
                         <a class="dropdown-item" href="/Nike/ADDCalzados/">Calzados</a>
                         <a class="dropdown-item" href="/Nike/ADDAccesorios/">Accesorios</a>
                     </div>
                 </li>
-            </ul>
-        </div>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">{{request.user.username}}</a>
+                </li>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#ffffff" href="/logout/">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#ffffff" href="/login/">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:#ffffff" href="/register/">Register</a>
+                </li>
+                {% endif %}
+            </ul>
             <form class="form-inline my-2 my-lg-0" action="/Nike/buscar_productos_indumentarias/" method="GET" >
                 <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search" name='search' >
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="color:#ffffff";>Search</button>
@@ -88,7 +107,6 @@
     </nav>
     {% block contenido %}
     {% endblock %}
-
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

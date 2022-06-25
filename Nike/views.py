@@ -1,9 +1,14 @@
 from unicodedata import name
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from Nike.models import indumentarias,calzados,accesorios
+from Nike.models import indumentarias,calzados,accesorios,Avatar
 from Nike.forms import Indumentarias_form, Calzados_form, Accesorios_form
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -195,3 +200,4 @@ def buscar_productos_indumentarias(request):
     else:
         context = {"errors": "No se encontro el producto"}
     return render(request, "search_product.html", context=context)
+

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class indumentarias(models.Model):
     codigo_barra = models.CharField(max_length=40, unique = True)
@@ -46,3 +47,9 @@ class accesorios(models.Model):
 
     def __str__(self):
         return F'Producto {self.nombre} cuesta un total de ${self.precio}'
+
+class Avatar(models.Model):
+    #user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='user_profile')
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    #phone = models.CharField(max_length=20)
+    image = models.ImageField(upload_to='avatares',null=True,blank=True)

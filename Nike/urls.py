@@ -33,5 +33,6 @@ urlpatterns =[
     path('Llaveros/', Llaveros, name = 'Llaveros'),
 
     path('buscar_productos_indumentarias/', buscar_productos_indumentarias, name = 'buscar_productos_indumentarias'),
+
 ]
 

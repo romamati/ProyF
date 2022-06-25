@@ -23,7 +23,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 context = {'message':f'Bienvenido {username}!! :D'}
-                return redirect('/')#redireccionar mi vista
+                return render(request, 'index.html', context = context)
             else:
                 context = {'errors':'No hay ningun usuario con esas credenciales!!!'}
                 form = AuthenticationForm()
@@ -32,7 +32,7 @@ def login_view(request):
             errors = form.errors
             form = AuthenticationForm()
             context = {'errors':errors, 'form':form}
-            return render(request, 'auth/login.html', context = context)
+            return render(request, 'login.html', context = context)
 
     else:
         form = AuthenticationForm()
@@ -67,11 +67,3 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
-def index(request):
-    return render(request, 'index.html')
-def contact(request):
-    if request.user.is_authenticated and request.user.is_superuser:
-        print(request.user.username)
-        return render(request, 'contact.html')
-    else:
-        return redirect('login')
