@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+Editar
+{% endblock %}
+
+
+{% block contenido %}
+
+{% if form %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<form action="" method="POST" enctype="multipart/form-data" style="color:#ffffff">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <input type="submit" , value="Enviar!">
+</form>
+
+{% elif nuevo_indumentaria %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{nuevo_indumentaria.imagen.url}}" alt="Nike">
+    <div class="card-body">
+        <h5 class="card-title">{{nuevo_indumentaria.nombre}}</h5>
+        <p class="card-text">{{nuevo_indumentaria.talle}}</p>
+        <p class="card-text">{{nuevo_indumentaria.precio}}</p>
+    </div>
+</div>
+
+{% elif nuevo_calzado %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{nuevo_calzado.imagen.url}}" alt="Nike">
+    <div class="card-body">
+        <h5 class="card-title">{{nuevo_calzado.nombre}}</h5>
+        <p class="card-text">{{nuevo_calzado.talle}}</p>
+        <p class="card-text">{{nuevo_calzado.precio}}</p>
+    </div>
+</div>
+
+{% elif nuevo_accesorio %}
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{nuevo_accesorio.imagen.url}}" alt="Nike">
+    <div class="card-body">
+        <h5 class="card-title">{{nuevo_accesorio.nombre}}</h5>
+        <p class="card-text">{{nuevo_accesorio.precio}}</p>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Eliminar accesorios
+{% endblock %}
+
+{% block contenido %}
+
+</h5 style='color: red'> Estas por eliminar el producto {{object.nombre}}. Continuar?</h5>
+
+<form method='POST'>    
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Eliminar</button>
+</form>
+
+{% endblock %}

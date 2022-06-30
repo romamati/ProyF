@@ -1,14 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class indumentarias(models.Model):
     codigo_barra = models.CharField(max_length=40, unique = True)
     nombre = models.CharField(max_length=40)
     precio = models.FloatField()
     talle = models.CharField(max_length=40)
     color = models.CharField(max_length=40)
-    cod_categoria = models.IntegerField()
     imagen = models.ImageField(upload_to="indumentaria",null=True)
+    categoria = models.ForeignKey('Categoria_Indumentaria', on_delete=models.CASCADE, related_name='Nike')
 
     class Meta:
         verbose_name = 'indumentaria'
@@ -23,8 +24,8 @@ class calzados(models.Model):
     precio = models.FloatField()
     talle = models.CharField(max_length=40)
     color = models.CharField(max_length=40)
-    cod_categoria = models.IntegerField()
     imagen = models.ImageField(upload_to="calzado",null=True)
+    categoria = models.ForeignKey('Categoria_Calzado', on_delete=models.CASCADE, related_name='Nike')
 
     class Meta:
         verbose_name = 'calzado'
@@ -38,8 +39,8 @@ class accesorios(models.Model):
     nombre = models.CharField(max_length=40)
     precio = models.FloatField()
     color = models.CharField(max_length=40)
-    cod_categoria = models.IntegerField()
     imagen = models.ImageField(upload_to="accesorio",null=True)
+    categoria = models.ForeignKey('Categoria_Accesorio', on_delete=models.CASCADE, related_name='Nike')#une con la tabla categoria y me muestra un listado
 
     class Meta:
         verbose_name = 'accesorio'
@@ -53,3 +54,34 @@ class Avatar(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     #phone = models.CharField(max_length=20)
     image = models.ImageField(upload_to='avatares',null=True,blank=True)
+
+class Categoria_Indumentaria(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Categoria_Indumentaria'
+        verbose_name_plural = 'Categoria_Indumentarias'
+
+    def __str__(self):
+        return self.name
+
+class Categoria_Calzado(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Categoria_Calzado'
+        verbose_name_plural = 'Categoria_Calzados'
+
+    def __str__(self):
+        return self.name
+
+class Categoria_Accesorio(models.Model):
+    name = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Categoria_Accesorio'
+        verbose_name_plural = 'Categoria_Accesorios'
+
+    def __str__(self):
+        return self.name
+

@@ -22,7 +22,8 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                context = {'message':f'Bienvenido {username}!! :D'}
+                #context = {'message':f'Bienvenido {username}!! :D'}
+                
                 return redirect('/')#redireccionar mi vista
             else:
                 context = {'errors':'No hay ningun usuario con esas credenciales!!!'}
@@ -33,7 +34,6 @@ def login_view(request):
             form = AuthenticationForm()
             context = {'errors':errors, 'form':form}
             return render(request, 'auth/login.html', context = context)
-
     else:
         form = AuthenticationForm()
         context = {'form':form}

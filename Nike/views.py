@@ -4,14 +4,12 @@ from django.http import HttpResponse
 from Nike.models import indumentarias,calzados,accesorios,Avatar
 from Nike.forms import Indumentarias_form, Calzados_form, Accesorios_form
 
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import DetailView, UpdateView, DeleteView
+from django.urls import reverse
 
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-
-
-
+#--------------------INFO DE LA WEB Y LOS CREADORES---------------------------
+def sobre_nosotros(request):
+    return render(request, 'Sobre_mi.html')
 
 #--------------------------------------Parte de Indumentarias--------------------------------------------------------------
 def indumentaria_view(request):
@@ -34,33 +32,35 @@ def crear_productos_indumentarias(request):
                 precio = form.cleaned_data['precio'],
                 talle = form.cleaned_data['talle'],
                 color = form.cleaned_data['color'],
-                cod_categoria = form.cleaned_data['cod_categoria'],
+                #cod_categoria = form.cleaned_data['cod_categoria'],
                 imagen = form.cleaned_data['imagen'],
+                categoria = form.cleaned_data['categoria'],
             )
             context ={'nuevo_indumentaria':nuevo_indumentaria}
         return render(request, 'create_product.html', context=context)
 
 def Remeras(request):
     print(request.method)
-    productos = indumentarias.objects.filter(cod_categoria = 1)
+    productos = indumentarias.objects.filter(categoria = 1)
+    #productos = indumentarias.objects.all().select_related('Categoria_Indumentaria').filter(name='Remeras')
     context = {'productos':productos}
     return render(request, 'indumentaria.html', context=context)
 
 def Pantalones(request):
     print(request.method)
-    productos = indumentarias.objects.filter(cod_categoria = 2)
+    productos = indumentarias.objects.filter(categoria = 2)
     context = {'productos':productos}
     return render(request, 'indumentaria.html', context=context)
 
 def Camperas(request):
     print(request.method)
-    productos = indumentarias.objects.filter(cod_categoria = 3)
+    productos = indumentarias.objects.filter(categoria = 3)
     context = {'productos':productos}
     return render(request, 'indumentaria.html', context=context)
 
 def Buzos(request):
     print(request.method)
-    productos = indumentarias.objects.filter(cod_categoria = 4)
+    productos = indumentarias.objects.filter(categoria = 4)
     context = {'productos':productos}
     return render(request, 'indumentaria.html', context=context)
 
@@ -85,33 +85,35 @@ def crear_productos_calzados(request):
                 precio = form.cleaned_data['precio'],
                 talle = form.cleaned_data['talle'],
                 color = form.cleaned_data['color'],
-                cod_categoria = form.cleaned_data['cod_categoria'],
+                #cod_categoria = form.cleaned_data['cod_categoria'],
                 imagen = form.cleaned_data['imagen'],
+                categoria = form.cleaned_data['categoria'],
             )
             context ={'nuevo_calzado':nuevo_calzado}
         return render(request, 'create_product.html', context=context)
 
 def ZapatillaDeportiva(request):
     print(request.method)
-    productos = calzados.objects.filter(cod_categoria = 1)
+    productos = calzados.objects.filter(categoria = 1)
+    #productos = calzados.objects.all().select_related('Categoria_Calzados').filter(name='Remeras')
     context = {'productos':productos}
     return render(request, 'calzado.html', context=context)
 
 def ZapatillaComunes(request):
     print(request.method)
-    productos = calzados.objects.filter(cod_categoria = 2)
+    productos = calzados.objects.filter(categoria = 2)
     context = {'productos':productos}
     return render(request, 'calzado.html', context=context)
 
 def Botines(request):
     print(request.method)
-    productos = calzados.objects.filter(cod_categoria = 3)
+    productos = calzados.objects.filter(categoria = 3)
     context = {'productos':productos}
     return render(request, 'calzado.html', context=context)
 
 def Ojotas(request):
     print(request.method)
-    productos = calzados.objects.filter(cod_categoria = 4)
+    productos = calzados.objects.filter(categoria = 4)
     context = {'productos':productos}
     return render(request, 'calzado.html', context=context)
 
@@ -135,51 +137,52 @@ def crear_productos_accesorios(request):
                 nombre = form.cleaned_data['nombre'],
                 precio = form.cleaned_data['precio'],
                 color = form.cleaned_data['color'],
-                cod_categoria = form.cleaned_data['cod_categoria'],
+                #cod_categoria = form.cleaned_data['cod_categoria'],
                 imagen = form.cleaned_data['imagen'],
+                categoria = form.cleaned_data['categoria'],
             )
             context ={'nuevo_accesorio':nuevo_accesorio}
         return render(request, 'create_product.html', context=context)
 
 def Pelota(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 1)
+    productos = accesorios.objects.filter(categoria = 1)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Pulseras(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 2)
+    productos = accesorios.objects.filter(categoria = 2)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Cantiplora(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 3)
+    productos = accesorios.objects.filter(categoria = 3)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Anteojos(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 4)
+    productos = accesorios.objects.filter(categoria = 4)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Muñequeras(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 5)
+    productos = accesorios.objects.filter(categoria = 5)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Bolsos_Mochilas(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 6)
+    productos = accesorios.objects.filter(categoria = 6)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
 def Llaveros(request):
     print(request.method)
-    productos = accesorios.objects.filter(cod_categoria = 7)
+    productos = accesorios.objects.filter(categoria = 7)
     context = {'productos':productos}
     return render(request, 'accesorio.html', context=context)
 
@@ -201,3 +204,60 @@ def buscar_productos_indumentarias(request):
         context = {"errors": "No se encontro el producto"}
     return render(request, "search_product.html", context=context)
 
+
+class Detalle_calzado(DetailView):
+    model= calzados
+    template_name= 'calzado_detalle.html'
+
+class Detalle_indumentarias(DetailView):
+    model= indumentarias
+    template_name= 'indumentarias_detalle.html'
+
+class Detalle_accesorios(DetailView):
+    model= accesorios
+    template_name= 'accesorios_detalle.html'
+
+class Eliminar_calzado(DeleteView):
+    model= calzados
+    template_name= 'calzado_eliminar.html'
+
+    def get_success_url(self):
+        return reverse ('ZapatillaDeportiva')
+
+class Eliminar_indumentarias(DeleteView):
+    model= indumentarias
+    template_name= 'indumentarias_eliminar.html'
+
+    def get_success_url(self):
+        return reverse ('Indumentarias')
+
+class Eliminar_accesorios(DeleteView):
+    model= accesorios
+    template_name= 'accesorios_eliminar.html'
+
+    def get_success_url(self):
+        return reverse ('Accesorios')
+
+class Editar_calzado (UpdateView):
+    model= calzados
+    template_name= 'calzado_editar.html'
+    fields= '__all__'
+
+    def get_success_url(self):
+        return reverse ('Calzados')
+
+class Editar_indumentarias (UpdateView):
+    model= indumentarias
+    template_name= 'indumentarias_editar.html'
+    fields= '__all__'
+
+    def get_success_url(self):
+        return reverse ('Indumentarias')
+
+class Editar_accesorios (UpdateView):
+    model= accesorios
+    template_name= 'accesorios_editar.html'
+    fields= '__all__'
+
+    def get_success_url(self):
+        return reverse ('Accesorios')

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Productos
+{% endblock %}
+
+{% block contenido %}
+
+<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+
+    <div class="card" style="width: 11rem;" >
+        <img class="card-img-top" src="{{object.imagen.url}}" alt="Card image cap" width="200" height="200">
+        <div class="card-body text-center">
+            <h5 class = "text-center"><ins>{{object.nombre}}</ins> </h5>
+            <p class = "text-center"><b>Color:</b> {{object.color}}</p>
+            <p class = "text-center"><b>Precio:</b> ${{object.precio}}</p>
+            <p class = "text-center"><b>Talle:</b> {{object.talle}}</p>
+            <a href="/Nike/indumentarias-editar/{{object.id}}/" class= 'btn btn-primary'> Editar  </a>
+            <a href="/Nike/indumentarias-eliminar/{{object.id}}/" class= 'btn btn-danger' style="margin-top:1rem;"> Eliminar </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

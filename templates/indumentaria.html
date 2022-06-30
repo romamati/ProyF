@@ -9,14 +9,14 @@
 <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
     {% for product in productos %}
 
-    <div class="card" style="width: 18rem;" >
-        <img class="card-img-top" src="{{product.imagen.url}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class = "text-center">Descripción: {{product.nombre}} </h5>
-            <p class = "text-center">Color: {{product.color}}</p>
-            <p class = "text-center">Precio: ${{product.precio}}</p>
-            <p class = "text-center">Talle: {{product.talle}}</p>
-            <h5 class = "text-center">Producto de calidad</h5>
+    <div class="card" style="width: 11rem;" >
+        <img class="card-img-top" src="{{product.imagen.url}}" alt="Card image cap" width="200" height="200">
+        <div class="card-body text-center">
+            <h5 class = "text-center"><ins>{{product.nombre}} </ins></h5>
+            <p class = "text-center"><b>Color:</b> {{product.color}}</p>
+            <p class = "text-center"><b>Precio:</b> ${{product.precio}}</p>
+            <p class = "text-center"><b>Talle:</b> {{product.talle}}</p>
+            <a href="/Nike/indumentarias-detalle/{{product.id}}" class= 'btn btn-primary'> Ver mas </a>
         </div>
     </div>
 

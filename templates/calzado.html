@@ -11,12 +11,12 @@
 
     <div class="card" style="width: 18rem;" >
         <img class="card-img-top" src="{{c.imagen.url}}" alt="Card image cap">
-        <div class="card-body">
-            <h5 class = "text-center">Descripción: {{c.nombre}} </h5>
-            <p class = "text-center">Color: {{c.color}}</p>
-            <p class = "text-center">Precio: ${{c.precio}}</p>
-            <p class = "text-center">Talle: {{c.talle}}</p>
-            <h5 class = "text-center">Producto de calidad</h5>
+        <div class="card-body text-center">
+            <h5 class = "text-center"><ins>{{c.nombre}}</ins></h5>
+            <p class = "text-center"><b>Color:</b> {{c.color}}</p>
+            <p class = "text-center"><b>Precio:</b> ${{c.precio}}</p>
+            <p class = "text-center"><b>Talle:</b> {{c.talle}}</p>
+            <a href="/Nike/calzado-detalle/{{c.id}}" class= 'btn btn-primary'> Ver mas </a>
         </div>
     </div>
 
