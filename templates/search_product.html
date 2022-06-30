@@ -18,13 +18,19 @@
 {% elif productos %}
     <div class="d-flex" style="margin-top:5rem; margin-left:7rem">
         {% for product in productos %}
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{product.imagen.url}}" alt="Nike">
+                <div class="card" style="width: 11rem; border-radius: 1.25rem;">
+                    <img class="card-img-top" src="{{product.imagen.url}}" alt="Nike" width="200" height="200"
+                    style="border-top-left-radius: calc(4.25rem - 1px);border-top-right-radius: calc(4.25rem - 1px);">
                     <div class="card-body">
-                        <h5 class="card-title">Descripción: {{product.nombre}} {{product.color}}</h5>
-                        <p class="card-text">{{product.talle}}</p>
-                        <p class="card-text">{{product.precio}}</p>
-                        <a href="#" class="btn btn-primary">Comprar!</a>
+                        <h5 class="card-title"><ins>{{product.nombre}}</ins></h5>
+                        <p class="card-text"><b>Color: </b> {{product.color}}</p>
+                        <p class="card-text"><b>Talle: </b>{{product.talle}}</p>
+                        <p class="card-text"><b>Precio: </b>{{product.precio}}</p>
+                        <!--{% if product.categoria.id == 1 or product.categoria.id == 2 or product.categoria == 3 or product.categoria.id == 4 %}
+                            <a href="#" class="btn btn-primary">Ver mas</a>
+                        {% else %}
+                            <a href="#" class="btn btn-primary">Otro</a>
+                        {% endif %}-->
                     </div>
                 </div>
         {% endfor %}

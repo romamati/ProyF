@@ -6,11 +6,12 @@
 
 {% block contenido %}
 
-<div class="d-flex" style="margin-top:5rem; margin-left:7rem">
+<div class="d-flex" style="margin-top:5rem;">
     {% for c in productos %}
 
-    <div class="card" style="width: 18rem;" >
-        <img class="card-img-top" src="{{c.imagen.url}}" alt="Card image cap">
+    <div class="card" style="width: 11rem; border-radius: 1.25rem; margin-left:7rem" >
+        <img class="card-img-top" src="{{c.imagen.url}}" alt="Card image cap" width="200" height="200"
+        style="border-top-left-radius: calc(4.25rem - 1px);border-top-right-radius: calc(4.25rem - 1px);">
         <div class="card-body text-center">
             <h5 class = "text-center"><ins>{{c.nombre}}</ins></h5>
             <p class = "text-center"><b>Color:</b> {{c.color}}</p>

@@ -23,7 +23,6 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 #context = {'message':f'Bienvenido {username}!! :D'}
-                
                 return redirect('/')#redireccionar mi vista
             else:
                 context = {'errors':'No hay ningun usuario con esas credenciales!!!'}
@@ -67,8 +66,10 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
 def index(request):
     return render(request, 'index.html')
+    
 def contact(request):
     if request.user.is_authenticated and request.user.is_superuser:
         print(request.user.username)
