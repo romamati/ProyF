@@ -69,10 +69,13 @@ def logout_view(request):
 
 def index(request):
     return render(request, 'index.html')
-    
+
 def contact(request):
     if request.user.is_authenticated and request.user.is_superuser:
         print(request.user.username)
         return render(request, 'contact.html')
     else:
         return redirect('login')
+
+
+

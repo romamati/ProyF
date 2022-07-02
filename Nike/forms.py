@@ -1,5 +1,5 @@
 from django import forms
-from Nike.models import indumentarias,calzados,accesorios
+from Nike.models import indumentarias,calzados,accesorios,Avatar
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -24,6 +24,12 @@ class Accesorios_form(forms.ModelForm):
     class Meta:
         model = accesorios
         fields = '__all__'
+
+class AvatarFormulario(forms.ModelForm):
+    class Meta:
+        model = Avatar
+        fields = '__all__'
+
 
 #class User_registration_form(UserCreationForm):
    # email = forms.EmailField()

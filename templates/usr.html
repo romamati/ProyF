@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Productos
+{% endblock %}
+
+{% block contenido %}
+
+    {% for product in usr %}
+
+            <h5 class = "text-center"><ins>{{product.name}} </ins></h5>
+            
+
+    {% endfor %}
+
+
+{% endblock %}
