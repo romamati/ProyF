@@ -1,12 +1,20 @@
 
 from django.shortcuts import render,redirect
-from Nike.models import indumentarias,calzados,accesorios,Categoria_Indumentaria
+from Nike.models import indumentarias,calzados,accesorios
 from django.views.generic import DetailView, UpdateView, DeleteView,CreateView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 
-import users
+from users.models import User_profile
+from django.contrib.auth.models import User
 
+
+class Detalle_User(DetailView):
+    model= User
+    template_name= 'usr.html'
+
+    def get_success_url(self):
+        return reverse ('usr',kwargs={'pk':self.object.pk})
 #--------------------INFO DE LA WEB Y LOS CREADORES---------------------------
 def sobre_nosotros(request):
     return render(request, 'Sobre_mi.html')
@@ -214,16 +222,3 @@ def buscar_productos_indumentarias(request):
     return render(request, "search_product.html", context=context)
 
 
-def Users(request):
-    print(request.method)
-    usr = Users.objects.all()
-    context = {'usr':usr}
-    return render(request, 'usr.html', context=context)
-
-class Editar_users (UpdateView):
-    model= users
-    template_name= 'users_editar.html'
-    fields= '__all__'
-
-    def get_success_url(self):
-        return reverse ('users')

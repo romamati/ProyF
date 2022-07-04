@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from datetime  import datetime
@@ -9,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
-from FalsoNike.forms import User_registration_form
+from FalsoNike.forms import User_registration_form,User_profile_form
 
 
 def login_view(request):
@@ -42,12 +43,17 @@ def login_view(request):
 def register_view(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
+        form1 = User_profile_form(request.POST)
 
-        if form.is_valid():
+        if form.is_valid() and form1.is_valid():
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
-            user = authenticate(username = username, password = password)
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            form1.save()
+            photo = form.cleaned_data['photo']
+            user = authenticate(username = username, password = password, first_name=first_name, last_name=last_name,photo=photo)
             login(request, user)
             context = {'message':f'Usuario creado correctamente, bienvenido {username}'}
             return render(request, 'index.html', context = context)
@@ -58,7 +64,9 @@ def register_view(request):
             return render(request, 'auth/register.html', context = context)
     else:
         form = User_registration_form()
-        context = {'form':form}
+        form1 = User_profile_form()
+        #form1 = User_profile_form()
+        context = {'form':form,'form1':form1}
         return render(request, 'auth/register.html', context =context)
 
 
@@ -72,8 +80,8 @@ def index(request):
 
 def contact(request):
     if request.user.is_authenticated and request.user.is_superuser:
-        print(request.user.username)
-        return render(request, 'contact.html')
+       print(request.user.username)
+       return render(request, 'contact.html')
     else:
         return redirect('login')
 

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from Nike.views import Users,sobre_nosotros,Crear_indumentaria,Detalle_accesorios, Detalle_indumentarias, Detalle_calzado, Eliminar_indumentarias, Eliminar_accesorios, Eliminar_calzado,Editar_accesorios, Editar_indumentarias, Editar_calzado,buscar_productos_indumentarias,Pelota,Pulseras,Cantiplora,Anteojos,Muñequeras,Bolsos_Mochilas,Llaveros,Remeras,Camperas,Pantalones,Buzos,crear_productos_calzados,crear_productos_accesorios,indumentaria_view,ZapatillaDeportiva,ZapatillaComunes,Botines,Ojotas
+from Nike.views import Detalle_User,sobre_nosotros,Crear_indumentaria,Detalle_accesorios, Detalle_indumentarias, Detalle_calzado, Eliminar_indumentarias, Eliminar_accesorios, Eliminar_calzado,Editar_accesorios, Editar_indumentarias, Editar_calzado,buscar_productos_indumentarias,Pelota,Pulseras,Cantiplora,Anteojos,Muñequeras,Bolsos_Mochilas,Llaveros,Remeras,Camperas,Pantalones,Buzos,crear_productos_calzados,crear_productos_accesorios,indumentaria_view,ZapatillaDeportiva,ZapatillaComunes,Botines,Ojotas
 
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,6 +26,8 @@ urlpatterns =[
     path('Botines/', Botines, name = 'Botines'),
     path('Ojotas/', Ojotas, name = 'Ojotas'),
 
+    path('Detalle_User/<int:pk>/', Detalle_User.as_view(), name = 'Detalle_User'),
+
     #path('Accesorios/', accesorio_view, name = 'Accesorios'),
     path('ADDAccesorios/', crear_productos_accesorios.as_view(), name = 'ADDAccesorios'),
     path('accesorios-detalle/<int:pk>/',Detalle_accesorios.as_view(), name='accesorios-detalle'),
@@ -43,5 +45,4 @@ urlpatterns =[
 
     path('sobre_nosotros/',sobre_nosotros, name = 'sobre_nosotros'),
 
-    path('Users/', Users, name = 'Users')
 ]
