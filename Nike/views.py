@@ -10,11 +10,13 @@ from django.contrib.auth.models import User
 
 
 class Detalle_User(DetailView):
-    model= User
+    model= User_profile 
     template_name= 'usr.html'
 
     def get_success_url(self):
-        return reverse ('usr',kwargs={'pk':self.object.pk})
+        print(self.object)
+        return reverse ('usr',kwargs={'pk':self.object.user.pk})
+    
 #--------------------INFO DE LA WEB Y LOS CREADORES---------------------------
 def sobre_nosotros(request):
     return render(request, 'Sobre_mi.html')

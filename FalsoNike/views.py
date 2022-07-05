@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 
-from FalsoNike.forms import User_registration_form,User_profile_form
+from FalsoNike.forms import User_registration_form,User_profile_form, User_profile_form2
 
 
 def login_view(request):
@@ -43,17 +43,23 @@ def login_view(request):
 def register_view(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
-        form1 = User_profile_form(request.POST)
+        print(form.is_valid())
+        form1 = User_profile_form(request.POST,request.FILES)
+        print(form1.is_valid())
 
         if form.is_valid() and form1.is_valid():
-            form.save()
+            us= form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
-            form1.save()
-            photo = form.cleaned_data['photo']
-            user = authenticate(username = username, password = password, first_name=first_name, last_name=last_name,photo=photo)
+            phone=form1.cleaned_data['phone']
+         
+            
+            user = authenticate(username = username, password = password, first_name=first_name, last_name=last_name)
+            form2=User_profile_form2({'user':us,'phone':phone},request.FILES)
+            if form2.is_valid(): 
+                form2.save()
             login(request, user)
             context = {'message':f'Usuario creado correctamente, bienvenido {username}'}
             return render(request, 'index.html', context = context)

@@ -12,9 +12,10 @@ Registro
                             <div class="col-7">
                                 <img src="/media/nike.png" width="100" height="100">
                             </div>
-                            <form class="col-7" action="" method="POST">
+                            <form class="col-7" action="" method="POST" enctype="multipart/form-data">
                                 <div class="form-group">
                                         {{form.as_table}}
+                                        {{form1.as_table}}
                                 </div>
                                 {% csrf_token %}
                                 <input class="btn btn-secondary" type="submit", value="Ingresar">

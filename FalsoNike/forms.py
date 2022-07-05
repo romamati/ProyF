@@ -21,9 +21,21 @@ class User_registration_form(UserCreationForm):
         help_texts = {k:'' for k in fields}
 
 class User_profile_form(forms.ModelForm):
-    photo = forms.FileField(label='Photo', widget=forms.FileInput())
+    
+    
 
     class Meta:
         model = User_profile
-        fields = ['photo']
+        fields = '__all__'
+        exclude= ['user']
+        help_texts = {k:'' for k in fields}
+
+
+class User_profile_form2(forms.ModelForm):
+    
+    
+
+    class Meta:
+        model = User_profile
+        fields = '__all__'
         help_texts = {k:'' for k in fields}
